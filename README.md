@@ -1,1 +1,1 @@
-![test](https://www.google.com/url?sa=i&url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FLearn%2FServer-side%2FDjango%2FIntroduction&psig=AOvVaw301n46TQlsWg7MT-w4YsqP&ust=1694444553887000&source=images&cd=vfe&opi=89978449&ved=0CA4QjRxqFwoTCNCm_YCooIEDFQAAAAAdAAAAABAX)
+![test](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Introduction/basic-django.png)
