@@ -16,15 +16,7 @@
     ![Gambar](/pbpbagan.png)
     Dalam pengembangan web menggunakan Django, terdapat beberapa berkas yang saling terkait, yaitu urls.py, views.py, models.py, dan berkas HTML. 
 
-    urls.py, Berkas ini berisi daftar URL yang dapat diakses oleh pengguna. Setiap URL diarahkan ke view tertentu. Berkas ini berfungsi sebagai penghubung antara URL dan view. Saat pengguna mengakses URL tertentu, Django akan mencari URL tersebut di berkas urls.py dan mengarahkannya ke view yang sesuai.
-    
-    views.py: Berkas ini berisi fungsi-fungsi yang mengatur logika pada aplikasi web. Setiap view menerima request dari pengguna dan memberikan response yang sesuai. View dapat mengakses data dari models.py dan mengirimkan data tersebut ke berkas HTML. View juga dapat melakukan operasi CRUD (Create, Read, Update, Delete) pada data.
-
-    models.py: Berkas ini berisi definisi model-model data yang digunakan oleh aplikasi web. Model adalah representasi dari tabel pada database. Setiap model memiliki atribut-atribut yang merepresentasikan kolom pada tabel. Model juga dapat memiliki method-method yang digunakan untuk melakukan operasi CRUD pada data.
-
-    Berkas HTML: Berkas ini berisi kode HTML, CSS, dan JavaScript yang digunakan untuk menampilkan halaman web kepada pengguna. Berkas ini menerima data dari view dan menampilkan data tersebut ke pengguna. Berkas ini juga dapat menerima input dari pengguna dan mengirimkannya kembali ke view.
-    
-    Dengan demikian, dapat disimpulkan bahwa urls.py berfungsi sebagai penghubung antara URL dan view, views.py berfungsi sebagai penghubung antara view dan models.py, dan berkas HTML berfungsi sebagai penghubung antara view dan pengguna.
+    urls.py dengan views.py, Berkas ini berisi daftar URL yang dapat diakses oleh pengguna. Berkas ini berfungsi sebagai penghubung antara URL dan view dimana setiap url diarahkan ke view yang ada di views.py. Saat pengguna mengakses URL tertentu, Django akan mencari URL tersebut di berkas urls.py dan mengarahkannya ke view yang sesuai. views.py dengan models.py: Berkas ini berisi fungsi-fungsi yang mengatur logika pada aplikasi web. Setiap view menerima request dari pengguna dan memberikan response yang sesuai. View dapat mengakses data dari models.py dan mengirimkan data tersebut ke berkas HTML. View juga dapat melakukan operasi CRUD (Create, Read, Update, Delete) pada data. Models.py dengan database: models.py menjembatani pertukaran data untuk views.py. Berkas HTML: Berkas ini berisi kode HTML, CSS, dan JavaScript yang digunakan untuk menampilkan halaman web kepada pengguna. Berkas ini menerima data dari view dan menampilkan data tersebut ke pengguna. Berkas ini juga dapat menerima input dari pengguna dan mengirimkannya kembali ke view.
 
 
 3. Jelaskan mengapa kita menggunakan virtual environment?
@@ -37,10 +29,10 @@
     - Model View Controller (MVC) MVC merupakan pola desain perangkat lunak yang sering digunakan oleh pengembang perangkat lunak. Ini memiliki tiga komponen, masing-masing dengan tujuan tertentu:
     Model: bertugas sebagai pengelola data, logika, dan batasan aplikasi lainnya.
     View : berkaitan dengan bagaimana data akan ditampilkan kepada pengguna dan bertanggung jawab terhadap berbagai komponen representasi data.
-    Controller : memanipulasi Model dan merender Tampilan dengan bertindak sebagai jembatan antara keduanya.
+    Controller : mengatur interaksi model dan menghubungkan model dan view
 
     - Model View Template (MVT) MVT adalah pola desain lain yang mirip dengan MVC. Ini juga digunakan untuk mengimplementasikan antarmuka web dan aplikasi, namun berbeda dengan MVC, bagian pengontrol ditangani oleh kerangka kerja itu sendiri. Ini memiliki tiga komponen, masing-masing dengan tujuan tertentu:
-    Model: bertugas sebagai pengelola data, logika, dan batasan aplikasi lainnya.
+    Model: bertugas sebagai pengelola data, dan penghubung ke interface client dan database
     View : berkaitan dengan bagaimana data akan ditampilkan kepada pengguna dan bertanggun jawab terhadap berbagai komponen representasi data.
     Template: mendefinisikan bagaimana data akan disajikan kepada pengguna.
 
