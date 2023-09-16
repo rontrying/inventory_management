@@ -98,5 +98,74 @@ Tugas 3
             ]
             ```
 
+    2. Implementasi Skeleton sebagai Kerangka Views
+        - pertama tama saya membuat folder templates pada root folder dan buatlah sebuah berkas HTML baru bernama base.html. Berkas base.html berfungsi sebagai template dasar yang dapat digunakan sebagai kerangka umum untuk halaman web lainnya di dalam proyek. saya mengisi berkas base.html tersebut dengan kode berikut
+            ```html
+            {% load static %}
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8" />
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1.0"
+                    />
+                    {% block meta %}
+                    {% endblock meta %}
+                </head>
+
+                <body>
+                    {% block content %}
+                    {% endblock content %}
+                </body>
+            </html>
+            ```
+        - selanjutnya saya membuka settings.py yang ada pada subdirektori shopping_list dan mencari baris yang mengandung TEMPLATES. saya sesuaikan kode yang ada dengan potongan kode berikut agar berkas base.html terdeteksi sebagai berkas template.
+            ```python
+            ...
+            TEMPLATES = [
+                {
+                    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                    'DIRS': [BASE_DIR / 'templates'], # Tambahkan kode ini
+                    'APP_DIRS': True,
+                ...
+                }
+            ]
+            ...
+            ```
+
+        - kemudian pada subdirektori templates yang ada pada direktori main, saya mengubah kode berkas main.html yang telah dibuat di tutorial sebelumnya menjadi sebagai berikut.
+            ```html
+            {% extends 'base.html' %}
+
+            {% block content %}
+                <h1>Shopping List Page</h1>
+
+                <h5>Name:</h5>
+                <p>{{name}}</p>
+
+                <h5>Class:</h5>
+                <p>{{class}}</p>
+            {% endblock content %}
+            ```
+
+        3. Membuat Form Input Data dan Menampilkan Data Produk Pada HTML
+        - pertama saya membuat berkas baru pada direktori main dengan nama forms.py untuk membuat struktur form yang dapat menerima data produk baru. saya menambahkan kode berikut ke dalam berkas forms.py
+            ```python
+            from django.forms import ModelForm
+            from main.models import Item
+
+            class ItemForm(ModelForm):
+                class Meta:
+                    model = Item
+                    fields = ["name", "amount", "description"]
+            ```
+
+        - kedua saya buka berkas views.py yang ada pada folder main dan tambahkan beberapa import berikut pada bagian paling atas.
+
+
+
+
+
 
 5. Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
