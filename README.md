@@ -51,6 +51,7 @@ Referensi
 
 Tugas 3
 1. Apa perbedaan antara form POST dan form GET dalam Django?
+
     Form GET dan Form POST adalah salah satu metode pengiriman data dari client (biasanya dalam bentuk formulir web) ke server web. Ini adalah salah satu metode yang digunakan dalam protokol HTTP (Hypertext Transfer Protocol) untuk mengirim data dari browser web ke server.
     Dalam Django, form POST dan form GET adalah dua metode pengiriman data dari client side menuju server side. Berikut adalah perbedaan antara keduanya:
         - POST mengirimkan data secara langsung, sedangkan GET mengirimkan data tidak langsung.
@@ -58,12 +59,35 @@ Tugas 3
         - POST tidak dibatasi panjang string, sedangkan GET dibatasi panjang string sampai 2047 karakter.
         - Pengambilan variabel dengan `request.POST.get` untuk POST dan `request.GET.get` untuk GET.
 
-        Dalam penggunaannya, GET dan POST adalah satu-satunya metode HTTP yang digunakan dalam pengiriman form. Pada umumnya, metode POST digunakan untuk mengubah status sistem, seperti mengubah database, sedangkan metode GET digunakan untuk hal-hal seperti form pencarian[3].
+    Dalam penggunaannya, GET dan POST adalah satu-satunya metode HTTP yang digunakan dalam pengiriman form. Pada umumnya, metode POST digunakan untuk mengubah status sistem, seperti mengubah database, sedangkan metode GET digunakan untuk hal-hal seperti form pencarian.
 
 2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
 
+    Dalam konteks pengiriman data, XML, JSON, dan HTML memiliki perbedaan utama sebagai berikut:
+    - XML (Extensible Markup Language) adalah bahasa markah yang digunakan untuk menyimpan dan mengangkut data dari satu aplikasi ke aplikasi lain melalui Internet. XML digunakan untuk merepresentasikan data dengan cara yang dapat dibaca mesin dan manusia. XML digunakan dalam konteks bisnis dan menyediakan banyak kemampuan dalam hal pemrosesan, validasi, dan transformasi data. XML sendiri menggunakan sintaks tag pembuka dan penutup dengan aturan hierarki.
+
+    - JSON (JavaScript Object Notation) adalah format pertukaran data ringan yang jauh lebih mudah bagi komputer untuk mengurai data yang sedang dikirim. JSON digunakan untuk menyimpan dan mengirimkan data. JSON mendukung angka, objek, string, dan array Boolean. JSON mendukung semua tipe data JSON dan tipe-tipe tambahan. JSON sendiri memiliki sintaks yang menggabungkan nama-nilai yang dikelompokan dalam objek dan larik sehingga berbasis objek.
+
+    - HTML (Hypertext Markup Language) adalah bahasa markah yang digunakan untuk membuat halaman web. HTML digunakan untuk menampilkan data secara visual di browser. HTML digunakan untuk menampilkan data yang telah diolah oleh server dan dikirim ke browser dalam bentuk halaman web. HTML juga menggunakan sintaksis berbasis tag, tetapi tujuannya adalah untuk menggambarkan struktur dan tampilan halaman web, bukan data mentah.
+
+    Dalam pengiriman data, JSON lebih sering digunakan dalam pengembangan aplikasi web saat ini, terutama saat bekerja dengan teknologi AJAX (Asynchronous JavaScript and XML). JSON lebih mudah dibaca dan dimengerti oleh manusia karena formatnya lebih sederhana. JSON juga mendukung semua browser dan semua JavaScript frameworks utama menawarkan dukungan JSON. Sebagian besar teknologi backend mendukung JSON. Sedangkan XML lebih sering digunakan dalam layanan perangkat lunak dan pengiriman pesan. Meskipun ada perbedaan antara format data XML dan JSON, keduanya tetap merupakan bagian yang penting dari pengembangan aplikasi web. Pilihan antara XML atau JSON harus bergantung pada kebutuhan dan spesifikasi proyek.
+
 3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+    JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena beberapa alasan. 
+    
+    1. JSON memiliki format yang lebih sederhana dan mudah dipahami oleh manusia dibandingkan dengan format lain seperti XML.
+    2. JSON lebih ringan dan lebih cepat dalam pemrosesan data karena memiliki baris kode yang lebih sedikit.
+    3. hampir semua browser modern dapat memproses data JSON dengan lancar, sehingga JSON lebih mudah diakses dan lebih fleksibel dalam penggunaannya.
+    4. JSON mendukung semua tipe data JSON dan tipe-tipe tambahan, sehingga memudahkan dalam pengolahan data. Oleh karena itu, JSON menjadi pilihan yang lebih sering digunakan dalam pertukaran data antara aplikasi web modern, terutama saat bekerja dengan teknologi AJAX (Asynchronous JavaScript and XML).
+    5. JSON sangat mirip dengan javascript sehingga cocok untuk komunikasi antar web dan tidak perlu mengkonversi tipe data. 
+    6. JSON mendukung tipe data besar tetapi JSON hanya mendukung serangkaian tipe data secara terbatas, seperti angka, array, dan objek, sehingga memudahkan dalam pengolahan data yang besar dan kompleks. JSON juga mendukung struktur data yang kompleks, seperti dalam bentuk array, sehingga developer dapat menjadikan berbagai data memiliki format yang terstruktur. 
+    7. JSON memiliki beberapa fitur keamanan yang memastikan bahwa data yang dikirimkan melalui JSON aman dari serangan. Salah satu fitur keamanan JSON adalah JSON Web Token (JWT), yang digunakan untuk mengamankan RESTful web service. JWT menggunakan HMAC SHA-512 untuk mengenkripsi data, sehingga data yang dikirimkan melalui JSON tetap aman dari serangan. Selain itu, JSON juga mendukung Content Security Policy (CSP), yang memungkinkan pengguna untuk mengontrol sumber daya yang dapat dimuat oleh halaman web. CSP memungkinkan pengguna untuk membatasi sumber daya yang dapat dimuat oleh halaman web, seperti gambar, script, dan CSS, sehingga meminimalkan risiko serangan XSS (Cross-Site Scripting). JSON juga mendukung sintaks format penemuan keamanan (ASFF), yang memungkinkan pengguna untuk menemukan temuan keamanan dalam format JSON.
+    8. JSON memiliki efisiensi yang baik dalam hal penggunaan bandwidth karena formatnya yang ringan dan mudah diproses.
 
 4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+```python
+def hello_world():
+print("Hello, world!")
+```
 
 5. Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
