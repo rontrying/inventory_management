@@ -150,22 +150,195 @@ Tugas 3
             ```
 
         3. Membuat Form Input Data dan Menampilkan Data Produk Pada HTML
-        - pertama saya membuat berkas baru pada direktori main dengan nama forms.py untuk membuat struktur form yang dapat menerima data produk baru. saya menambahkan kode berikut ke dalam berkas forms.py
-            ```python
-            from django.forms import ModelForm
-            from main.models import Item
+            - pertama saya membuat berkas baru pada direktori main dengan nama forms.py untuk membuat struktur form yang dapat menerima data produk baru. saya menambahkan kode berikut ke dalam berkas forms.py
+                ```python
+                from django.forms import ModelForm
+                from main.models import Item
 
-            class ItemForm(ModelForm):
-                class Meta:
-                    model = Item
-                    fields = ["name", "amount", "description"]
-            ```
+                class ItemForm(ModelForm):
+                    class Meta:
+                        model = Item
+                        fields = ["name", "amount", "description"]
+                ```
 
-        - kedua saya buka berkas views.py yang ada pada folder main dan tambahkan beberapa import berikut pada bagian paling atas.
+            - kedua saya buka berkas views.py yang ada pada folder main dan tambahkan beberapa import berikut pada bagian paling atas.
+                ```python
+                from django.http import HttpResponseRedirect
+                from main.forms import ItemForm
+                from django.urls import reverse
+                ```
+            
+            - ketiga Buat fungsi baru dengan nama create_product pada berkas tersebut yang menerima parameter request dan tambahkan potongan kode di bawah ini untuk menghasilkan formulir yang dapat menambahkan data produk secara otomatis ketika data di-submit dari form.
+                ```python
+                def create_product(request):
+                    form = ItemForm(request.POST or None)
 
+                    if form.is_valid() and request.method == "POST":
+                        form.save()
+                        return HttpResponseRedirect(reverse('main:show_main'))
+            
+                    context = {'form' : form}
+                    return render(request, "create_product.html", context)
+                ```
+            
+            - keempat saya ubah fungsi show_main yang sudah ada pada berkas views.py menjadi seperti berikut.
+                ```python
+                def show_main(request):
+                    items = Item.objects.all()
 
+                    context = {
+                        'name': 'Aaron Kwek',
+                        'class': 'PBP E', 
+                        'items': items
+                    }
+                    return render(request, "main.html", context)
+                ```
 
+            - kelima saya buka urls.py yang ada pada folder main dan import fungsi create_product yang sudah saya buat tadi.
+                ```python
+                from main.views import show_main, create_product
+                ```
+            
+            - keenam saya tambahkan path url ke dalam urlpatterns pada urls.py di main untuk mengakses fungsi yang sudah di-import pada poin sebelumnya.
+                ```python
+                path('create-product', create_product, name='create_product'),
+                ```
 
+            - ketujuh saya buat berkas HTML baru dengan nama create_product.html pada direktori main/templates. Isi create_product.html dengan kode berikut
+                ```html
+                {% extends 'base.html' %} 
 
+                {% block content %}
+                <h1>Add New Product</h1>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <table>
+                        {{ form.as_table }}
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="Add Product"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+                {% endblock %}
+                ```
+
+            - kedelapan saya buka main.html dan tambahkan kode berikut di dalam {% block content %} untuk menampilkan data produk dalam bentuk table serta tombol "Add New Product" yang akan redirect ke halaman form
+                ```html
+                ...
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Date Added</th>
+                    </tr>
+
+                    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+                    {% for product in products %}
+                        <tr>
+                            <td>{{product.name}}</td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.description}}</td>
+                            <td>{{product.date_added}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                <br />
+
+                <a href="{% url 'main:create_product' %}">
+                    <button>
+                        Add New Product
+                    </button>
+                </a>
+
+                {% endblock content %}
+                ```
+            
+        4. Mengembalikan Data dalam Bentuk XML
+            - pertama saya buka views.py yang ada pada folder main dan tambahkan import HttpResponse dan Serializer pada bagian paling atas
+                ```python
+                from django.http import HttpResponse
+                from django.core import serializers
+                ```
+            
+            - kedua saya buat sebuah fungsi yang menerima parameter request dengan nama show_xml dan buatlah sebuah variabel di dalam fungsi tersebut yang menyimpan hasil query dari seluruh data yang ada pada item
+                ```python
+                def show_xml(request):
+                    data = Item.objects.all()
+                    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+                ```
+            
+            - ketiga saya buka urls.py yang ada pada folder main dan import fungsi yang sudah saya buat tadi
+                ```python
+                    path('xml/', show_xml, name='show_xml'), 
+                ```
+
+        5. Mengembalikan Data dalam Bentuk JSON
+            - pertama saya buka views.py yang ada pada folder main dan buatlah sebuah fungsi baru yang menerima parameter request dengan nama show_json dengan sebuah variabel di dalamnya yang menyimpan hasil query dari seluruh data yang ada pada Item
+                ```python
+                def show_json(request):
+                    data = Item.objects.all()
+                    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+                ```
+            
+            - kedua saya buat sebuah variabel di dalam fungsi tersebut yang menyimpan hasil query dari data dengan id tertentu yang ada pada Item. Saya tambahkan return function berupa HttpResponse yang berisi parameter data hasil query yang sudah diserialisasi menjadi JSON atau XML dan parameter content_type dengan value "application/xml" (untuk format XML) atau "application/json" (untuk format JSON).
+                - XML
+                    ```python
+                    def show_xml_by_id(request, id):
+                        data = Item.objects.filter(pk=id)
+                        return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+                    ```
+                - JSON
+                    ```python
+                    def show_json_by_id(request, id):
+                        data = Item.objects.filter(pk=id)
+                        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+                    ```
+            
+            - ketiga saya buka urls.py yang ada pada folder main dan impor fungsi yang sudah saya buat tadi.
+                ```python
+                    from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
+                ```
+            
+            - keempat saya tambahkan path url ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi
+                ```python
+                ...
+                path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+                path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), 
+                ...
+                ```
+
+        6. Menambahkan pesan "Kamu menyimpan X item pada aplikasi ini" (dengan X adalah jumlah data item yang tersimpan pada aplikasi) dan menampilkannya di atas tabel data. Kalimat pesan boleh dikustomisasi sesuai dengan tema aplikasi, namun harus memiliki makna yang sama
+            - pertama saya membuka main.html dan menambahkan code berikut
+                ```html
+                ...
+                <div class="notification">
+                    Kamu menyimpan {{ jumlah_item }} item pada aplikasi ini.
+                </div>
+                ... // table saya
+                ```
+            - kedua saya membuka views.py dan menambahkan code berikut 
+                ```python
+                jumlah_item = Item.objects.all().count()
+                context = {
+                    'name': 'Aaron Kwek',
+                    'class': 'PBP E', 
+                    'items': items,
+                    'jumlah_item' : jumlah_item,
+                }
+                ```
 
 5. Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+    ![Gambar1](/1.png)
+    ![Gambar2](/2.png)
+    ![Gambar3](/3.png)
+    ![Gambar4](/4.png)
+    ![Gambar5](/5.png)
+

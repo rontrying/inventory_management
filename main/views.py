@@ -10,23 +10,27 @@ from django.core import serializers
 # Create your views here.
 def show_main(request):
     items = Item.objects.all()
+    jumlah_item = Item.objects.all().count()
 
     context = {
         'name': 'Aaron Kwek',
-        'class': 'PBP E', # Kelas PBP kamu
-        'items': items
+        'class': 'PBP E', 
+        'items': items,
+        'jumlah_item' : jumlah_item,
     }
 
     return render(request, "main.html", context)
 
 def create_product(request):
     form = ItemForm(request.POST or None)
-
     if form.is_valid() and request.method == "POST":
         form.save()
         return HttpResponseRedirect(reverse('main:show_main'))
     
-    context = {'form' : form}
+    context = {
+        'form' : form,
+        }
+    
     return render(request, "create_product.html", context)
 
 def show_xml(request):
