@@ -47,3 +47,23 @@ Referensi
 1. https://id.strephonsays.com/what-is-the-difference-between-mvc-and-mvvm 
 2. https://www.localstartupfest.id/faq/perbedaan-mvc-dan-mvvm/ 
 3. https://stackoverflow.com/questions/23591580/the-connection-between-django-projects-urls-py-and-views-py 
+
+
+Tugas 3
+1. Apa perbedaan antara form POST dan form GET dalam Django?
+    Form GET dan Form POST adalah salah satu metode pengiriman data dari client (biasanya dalam bentuk formulir web) ke server web. Ini adalah salah satu metode yang digunakan dalam protokol HTTP (Hypertext Transfer Protocol) untuk mengirim data dari browser web ke server.
+    Dalam Django, form POST dan form GET adalah dua metode pengiriman data dari client side menuju server side. Berikut adalah perbedaan antara keduanya:
+        - POST mengirimkan data secara langsung, sedangkan GET mengirimkan data tidak langsung.
+        - POST tidak menampilkan nilai variabel di URL, sehingga lebih aman, sedangkan GET menampilkan nilai variabel di URL, sehingga user dapat dengan mudah memasukkan nilai.
+        - POST tidak dibatasi panjang string, sedangkan GET dibatasi panjang string sampai 2047 karakter.
+        - Pengambilan variabel dengan `request.POST.get` untuk POST dan `request.GET.get` untuk GET.
+
+        Dalam penggunaannya, GET dan POST adalah satu-satunya metode HTTP yang digunakan dalam pengiriman form. Pada umumnya, metode POST digunakan untuk mengubah status sistem, seperti mengubah database, sedangkan metode GET digunakan untuk hal-hal seperti form pencarian[3].
+
+2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+
+3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+
+4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+5. Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
