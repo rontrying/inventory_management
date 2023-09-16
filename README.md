@@ -85,9 +85,18 @@ Tugas 3
     8. JSON memiliki efisiensi yang baik dalam hal penggunaan bandwidth karena formatnya yang ringan dan mudah diproses.
 
 4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-```python
-def hello_world():
-print("Hello, world!")
-```
+    1. mengatur Routing dari main/ ke /
+        - pertama tama saya jalankan virtual environment terlebih dahulu di cmd direktori saya
+            ```cmd
+            env\Scripts\activate.bat
+            ```
+        - selanjutnya saya buka urls.py yang ada pada folder inventory_management dan mengubah main/ menjadi '' pada urlpatterns seperti berikut
+            ```python
+            urlpatterns = [
+                path('', include('main.urls')),
+                path('admin/', admin.site.urls),
+            ]
+            ```
+
 
 5. Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
