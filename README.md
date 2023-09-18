@@ -237,21 +237,18 @@ Tugas 3
                         <th>Description</th>
                         <th>Date Added</th>
                     </tr>
-
+                
                     {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-                    {% for product in products %}
+                
+                    {% for item in items %}
                         <tr>
-                            <td>{{product.name}}</td>
-                            <td>{{product.price}}</td>
-                            <td>{{product.description}}</td>
-                            <td>{{product.date_added}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.amount}}</td>
+                            <td>{{item.description}}</td>
                         </tr>
                     {% endfor %}
                 </table>
-
                 <br />
-
                 <a href="{% url 'main:create_product' %}">
                     <button>
                         Add New Product
