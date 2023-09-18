@@ -235,9 +235,7 @@ Tugas 3
                         <th>Name</th>
                         <th>Price</th>
                         <th>Description</th>
-                        <th>Date Added</th>
                     </tr>
-                
                     {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
                 
                     {% for item in items %}
