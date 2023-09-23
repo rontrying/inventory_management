@@ -25,6 +25,23 @@
                 <td>{{item.name}}</td>
                 <td>{{item.amount}}</td>
                 <td>{{item.description}}</td>
+                <!-- Tambah jumlah stok -->
+                <td><form method="POST" action="{% url 'main:tambah_stok' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Tambah</button>
+                </form></td>
+
+                <!-- Kurangi jumlah stok -->
+                <td><form method="POST" action="{% url 'main:kurangi_stok' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Kurangi</button>
+                </form></td>
+
+                <td><form method="POST" action="{% url 'main:hapus_item' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Hapus</button>
+                </form></td>
+
             </tr>
         {% endfor %}
     </table>

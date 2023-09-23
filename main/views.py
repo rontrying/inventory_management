@@ -94,3 +94,26 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def tambah_stok(request, id):
+    item = get_object_or_404(Item, id=id)
+    if request.method == 'POST':
+        # Tambah satu ke jumlah stok
+        item.amount += 1
+        item.save()
+    return show_main(request)
+
+def kurangi_stok(request, id):
+    item = get_object_or_404(Item, id=id)
+    if request.method == 'POST':
+        # Kurangi satu dari jumlah stok jika jumlah > 0
+        if item.amount > 0:
+            item.amount -= 1
+            item.save()
+    return show_main(request)
+
+def hapus_item(request, id):
+    item = get_object_or_404(Item, id=id)
+    if request.method == 'POST':
+        item.delete()
+    return show_main(request)
