@@ -365,7 +365,14 @@ Tugas 4
     Dalam konteks Django, Django menyediakan kerangka kerja sesi yang memungkinkan Anda menyimpan dan mengambil data secara per pengunjung situs. Django mengabstraksi proses pengiriman dan penerimaan cookies, dengan menempatkan cookie ID sesi di sisi klien, dan menyimpan semua data terkait di sisi server. Jadi, hanya ID sesi yang terlihat oleh pengguna, sementara data sesi tetap tersembunyi di server.
     Untuk menggunakan sesi berbasis cookies, Anda dapat mengatur pengaturan SESSION_ENGINE menjadi “django.contrib.sessions.backends.signed_cookies”. Data sesi akan disimpan menggunakan alat Django untuk penandatanganan kriptografis dan pengaturan SECRET_KEY5
 
-4. 
+4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+    - Penggunaan cookies dalam pengembangan web memiliki beberapa risiko potensial yang perlu diwaspadai:
+        1. Pelanggaran Privasi: Cookies dapat digunakan untuk melacak aktivitas online pengguna, yang bisa menjadi masalah privasi.
+        2. Serangan Keamanan: Jika cookies tidak dilindungi dengan benar, mereka bisa dieksploitasi oleh penyerang untuk melakukan berbagai jenis serangan, seperti pencurian data dan kebocoran informasi.
+        3. Manipulasi Cookies: Ada beberapa jenis penipuan dan serangan cyber yang didasarkan pada mengeksploitasi kerentanan cookies, dan itu dapat menyebabkan insiden keamanan yang parah.
+        4. Supercookies dan Zombie Cookies: Contoh manipulasi cookies adalah supercookie, yang bisa menjadi masalah keamanan, atau zombie cookie, yang bisa dibuat setelah dihapus.
+
+    Namun, jika cookies ditangani dengan benar, mereka tidak menimbulkan bahaya dan tidak dapat mentransmisikan virus atau malware. Oleh karena itu, penting untuk menerapkan praktik terbaik dalam pengelolaan cookies untuk meminimalkan risiko ini.
 
 5. Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
     1. implementasi fungsi registrasi
@@ -635,3 +642,9 @@ Tugas 4
     - kemudian saya buat akun disana ronsipembeli dan ronsipenjual 
     - kemudian saya login ke akun pertama dan menambahkan 3 data
     - terakhir saya login ke akun kedua dan menambahkan 3 data
+
+Referensi:
+1. https://www.freecodecamp.org/news/everything-you-need-to-know-about-cookies-for-web-development/
+2. https://www.kaspersky.com/resource-center/definitions/cookies 
+3. https://docs.djangoproject.com/en/4.2/topics/auth/
+4. https://stackoverflow.com/questions/13900357/how-to-use-django-usercreationform-correctly 
