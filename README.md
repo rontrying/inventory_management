@@ -363,7 +363,7 @@ Tugas 4
     **Cookies** adalah mekanisme kecil yang digunakan dalam konteks aplikasi web untuk menyimpan informasi di sisi klien (browser pengguna) dan mengirimkannya kembali ke server dengan setiap permintaan. Cookies berguna untuk menyimpan data yang berhubungan dengan sesi pengguna, pelacakan preferensi, atau informasi lain yang harus dipertahankan antara permintaan-ke-permintaan di situs web.
 
     Dalam konteks Django, Django menyediakan kerangka kerja sesi yang memungkinkan Anda menyimpan dan mengambil data secara per pengunjung situs. Django mengabstraksi proses pengiriman dan penerimaan cookies, dengan menempatkan cookie ID sesi di sisi klien, dan menyimpan semua data terkait di sisi server. Jadi, hanya ID sesi yang terlihat oleh pengguna, sementara data sesi tetap tersembunyi di server.
-    Untuk menggunakan sesi berbasis cookies, Anda dapat mengatur pengaturan SESSION_ENGINE menjadi “django.contrib.sessions.backends.signed_cookies”. Data sesi akan disimpan menggunakan alat Django untuk penandatanganan kriptografis dan pengaturan SECRET_KEY5
+    Untuk menggunakan sesi berbasis cookies, Anda dapat mengatur pengaturan SESSION_ENGINE menjadi “django.contrib.sessions.backends.signed_cookies”. Data sesi akan disimpan menggunakan alat Django untuk penandatanganan kriptografis dan pengaturan SECRET_KEY
 
 4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
     - Penggunaan cookies dalam pengembangan web memiliki beberapa risiko potensial yang perlu diwaspadai:
