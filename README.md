@@ -648,3 +648,157 @@ Referensi:
 2. https://www.kaspersky.com/resource-center/definitions/cookies 
 3. https://docs.djangoproject.com/en/4.2/topics/auth/
 4. https://stackoverflow.com/questions/13900357/how-to-use-django-usercreationform-correctly 
+
+Tugas 5
+1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+
+- CSS selector digunakan untuk memilih dan mengatur tampilan elemen HTML berdasarkan atributnya, seperti nama tag, class, atau ID. Berikut adalah beberapa selector CSS yang umum digunakan dan kapan waktu yang tepat untuk menggunakannya:
+
+    1. Element Selector: Selector ini digunakan untuk memilih semua elemen dengan jenis tertentu, seperti semua elemen <p>. Selector ini paling dasar dan sering digunakan untuk menerapkan gaya pada semua elemen tertentu pada halaman. Contoh: p { color: black; }
+
+    2. ID Selector: Selector ini digunakan untuk memilih satu elemen dengan atribut ID tertentu. ID harus unik pada halaman, sehingga selector ini berguna ketika Anda ingin menerapkan gaya pada elemen tertentu. Contoh: #header { background-color: green; }
+
+    3. Class Selector: Selector ini digunakan untuk memilih semua elemen dengan atribut class tertentu. Kelas dapat diterapkan pada beberapa elemen, sehingga selector ini berguna ketika Anda ingin menerapkan gaya pada sekelompok elemen. Contoh: .highlight { font-weight: bold; }
+
+    4. Attribute Selector: Selector ini digunakan untuk memilih elemen berdasarkan atributnya, seperti atribut href atau src. Selector ini berguna ketika Anda ingin menerapkan gaya pada elemen dengan nilai atribut tertentu. Contoh: a[href^="https://"] { color: red; }
+
+    5. Universal Selector: Selector ini digunakan untuk memilih semua elemen pada halaman. Selector ini tidak umum digunakan, tetapi dapat berguna dalam situasi tertentu. Contoh: * { margin: 30; }
+
+- Pilihan selector tergantung pada kasus penggunaan tertentu. Misalnya, jika ingin menerapkan gaya pada semua judul pada halaman, kita akan menggunakan selector elemen (h1, h2, dll.). Jika ingin menerapkan gaya pada bagian tertentu dari halaman, kita mungkin akan menggunakan selector class (class="section"). Jika ingin menerapkan gaya pada satu elemen, kita akan menggunakan selector ID (id="header"). Selector atribut berguna ketika Anda ingin memilih elemen berdasarkan atributnya, dan selector universal berguna ketika kita ingin menerapkan gaya pada semua elemen pada halaman.
+
+2. Jelaskan HTML5 Tag yang kamu ketahui.
+    - Berikut adalah beberapa tag HTML5 yang umum digunakan:
+    <article>: digunakan untuk menandai sebuah artikel atau konten independen pada halaman web.
+    <aside>: digunakan untuk menandai konten yang terkait dengan konten lain pada halaman web.
+    <header>: digunakan untuk menandai bagian header atau kepala dari sebuah halaman web.
+    <nav>: digunakan untuk menandai bagian navigasi pada halaman web.
+    <section>: digunakan untuk menandai sebuah bagian pada halaman web.
+    <h1> - <h6> adalah untuk header
+    <button> dan <input> adalah inline element, button untuk memunculkan tombol dan input untuk meminta input
+    <figure> untuk menyimpan gambar dan memberi caption
+    <strong> untuk membuat tulisan semakin tebal
+    <p> untuk membuat paragraf
+    <a> untuk memasukan link
+    <ul> membuat list tidak berurut dengan bulat hitam
+    <li> bagian dari ul perelemennya
+    <ol> membuat list berurut dengan angka
+    <figcaption> untuk memberi caption pada gambar dalam figure
+    <input> : type, name, placeholder untuk menentukan tipe yang di submit, nama folder hasil inputan atau nama bagian yang dapat dieksekusi lebih dahulu, kata pembantu dalam kotak input
+    <footer> untuk membuat element pada bagian bawah web
+    <table> untuk membuat tabel pada html dan <caption> anak pertama dari parent tabel
+
+3. Jelaskan perbedaan antara margin dan padding.
+    `Margin` dan `padding` adalah dua properti dasar dalam CSS yang memungkinkan Anda mengatur ruang di sekitar dan di dalam elemen HTML. Namun, keduanya memiliki peran yang berbeda dalam tata letak dan desain halaman.
+
+    1. **Margin:**
+    - `Margin` adalah ruang di luar elemen, di antara elemen tersebut dan elemen-elemen di sekitarnya.
+    - Ini tidak memiliki warna latar atau border, dan biasanya digunakan untuk menciptakan ruang atau jarak antara elemen-elemen.
+    - Mengatur margin pada elemen akan memengaruhi posisinya terhadap elemen-elemen di sekitarnya.
+
+    Contoh penggunaan margin:
+    ```css
+    .example {
+        margin: 1.5rem; /* Margin sekitar elemen sebesar 10 piksel */
+    }
+    ```
+
+    2. **Padding:**
+    - `Padding` adalah ruang di dalam elemen, di antara batas elemen dan kontennya.
+    - Ini memengaruhi area dalam elemen tempat kontennya berada.
+    - Padding ditambahkan ke bagian dalam elemen dan dapat memiliki warna latar atau border.
+
+    Contoh penggunaan padding:
+    ```css
+    .example {
+        padding: 10px; /* Padding di dalam elemen sebesar 10 piksel */
+    }
+    ```
+
+    **Perbedaan Utama:**
+    - Jadi, perbedaan utama adalah bahwa `margin` mengatur ruang di luar elemen, sementara `padding` mengatur ruang di dalam elemen.
+    - `Margin` berpengaruh pada tata letak dan posisi elemen dalam halaman secara keseluruhan, sedangkan `padding` hanya memengaruhi konten di dalam elemen.
+    - Keduanya dapat memiliki nilai numerik (px, em, rem, dll.) untuk menentukan ukuran, dan juga dapat memiliki nilai relatif seperti persentase.
+
+    ![Alt text](image.png)
+
+4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+    Bootstrap dan Tailwind CSS adalah dua framework CSS yang populer digunakan dalam pengembangan web. Bootstrap adalah framework HTML, CSS, dan JavaScript yang paling populer untuk membangun proyek responsif dan mobile-first di web. Sementara Tailwind CSS adalah framework CSS utilitas yang paling populer untuk pengembangan UI yang cepat. Perbedaan utama antara keduanya adalah bahwa Bootstrap adalah UI kit yang sudah jadi dan siap pakai, sedangkan Tailwind CSS bukan UI kit. Tailwind CSS menawarkan kelas utilitas yang unik dan fleksibel, sedangkan Bootstrap menawarkan komponen-komponen yang sudah jadi dan siap pakai.
+
+    Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya? Pilihan framework tergantung pada kebutuhan dan preferensi pengembang. Jika ingin membangun proyek dengan cepat dan mudah, Bootstrap mungkin menjadi pilihan yang lebih baik karena menawarkan komponen-komponen yang sudah jadi dan siap pakai. Namun, jika ingin membangun proyek dengan desain yang unik dan fleksibel, Tailwind CSS mungkin menjadi pilihan yang lebih baik karena menawarkan kelas utilitas yang unik dan fleksibel. Selain itu, Tailwind CSS juga cocok untuk membuat prototipe secara cepat dan menciptakan desain yang konsisten.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+    - pertama tama saya menambahkan bootstrap CSS dan JS
+    ```html
+    <head>
+    {% block meta %}
+        ...
+    {% endblock meta %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+    </head>
+    ```
+
+    - kedua saya tambahkan 2 baris script JS ini dibawah script JS yang sudah saya buat sebelumnya.
+    ```html
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    ```
+
+    - selanjutnya saya merubah halaman login, register, tambah product
+    saya menggantikan struktur dan tata letak yang lebih baik dengan menggunakan komponen-komponen Bootstrap dan mengikuti praktik-praktik desain yang lebih modern. Berikut adalah beberapa perubahan dan penjelasan:
+
+    1. **Container dan Grid System:**
+    - saya menggunakan komponen-komponen Bootstrap seperti `container`, `row`, dan `col-md-6` untuk mengatur tata letak secara responsif.
+
+    2. **Card Component:**
+    - saya menggantikan `<div class="login">` dengan komponen `card` Bootstrap, memberikan tampilan kartu yang lebih modern.
+
+    3. **Form Labels:**
+    - saya menggunakan elemen `<label>` untuk menetapkan label pada elemen formulir. Ini lebih baik dari `<td>` dan memberikan struktur HTML yang semantik.
+
+    4. **Button Styles:**
+    - saya menggunakan kelas Bootstrap seperti `btn`, `btn-primary`, dan `btn-link` untuk memberikan gaya tombol yang lebih baik.
+
+    5. **Margin and Padding:**
+    - saya menggunakan kelas margin dan padding seperti `mb-3`, `mt-3`, dan lainnya untuk memberikan ruang antara elemen-elemen dengan cara yang lebih teratur.
+
+    6. **List Styling:**
+    - saya menggunakan kelas Bootstrap `list-unstyled` untuk menghapus gaya default daftar, memberikan tampilan pesan yang lebih bersih.
+
+    7. **CSS Classes:**
+    - saya menambahkan beberapa kelas CSS seperti `text-center` untuk mengatur teks menjadi pusat dan `form-control` untuk memberikan tampilan yang konsisten pada elemen formulir.
+
+    8. **Link Styling:**
+    - saya menggunakan kelas `btn-link` pada tautan untuk memberikan tampilan tautan yang lebih baik.
+
+    9. **Responsiveness:**
+    - Dengan menggunakan grid system dan komponen Bootstrap, saya dirancang agar responsif dan dapat diakses dengan baik pada perangkat berbagai ukuran layar.
+
+    - Kemudian saya merubah halaman main 
+    saya membawa perubahan signifikan dari segi struktur HTML dan penggunaan Bootstrap untuk memberikan tampilan yang lebih modern dan terorganisir. Berikut adalah perubahan utama yang dilakukan terhadap code pertama:
+
+    1. **Navbar:**
+    - saya menambahkan sebuah navbar menggunakan komponen Bootstrap. Navbar ini memberikan tampilan yang lebih terstruktur dan memudahkan navigasi.
+
+    2. **Card Component:**
+    - saya menggantikan penggunaan tag `<h1>`, `<h5>`, dan `<p>` dengan komponen `card` Bootstrap. Ini memberikan tampilan kartu yang lebih rapi dan terorganisir.
+
+    3. **Alert Component:**
+    - saya menggunakan komponen `alert` Bootstrap untuk menggantikan `<div class="notification">`. Ini memberikan tampilan pesan yang lebih menarik dan konsisten dengan desain Bootstrap.
+
+    4. **Table Styling:**
+    - saya menggunakan kelas Bootstrap `table` dan `table-striped` untuk memberikan tampilan yang lebih baik pada tabel item.
+
+    5. **Button Styling:**
+    - saya menggunakan kelas Bootstrap seperti `btn`, `btn-primary`, `btn-warning`, dan `btn-danger` untuk memberikan gaya tombol yang lebih baik dan konsisten.
+
+    6. **Margin and Padding:**
+    - saya menggunakan kelas Bootstrap seperti `mt-5`, `mt-3`, dan lainnya untuk memberikan margin dan padding secara konsisten.
+
+    7. **CSS Styling:**
+    - saya menambahkan beberapa gaya CSS langsung untuk menyesuaikan tampilan navbar, termasuk border-radius dan efek hover pada link.
+
+    8. **Grid System:**
+    - saya menggunakan grid system Bootstrap dengan kelas seperti `container`, `row`, dan `col-md-6` untuk mengatur tata letak secara responsif.
+
+    Dengan menggunakan Bootstrap, saya mencapai tampilan yang lebih konsisten, responsif, dan mudah dikelola dibandingkan dengan code pertama. Ini juga memberikan fleksibilitas dan kelebihan dalam desain dan tata letak halaman.
