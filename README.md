@@ -802,3 +802,8 @@ Tugas 5
     - saya menggunakan grid system Bootstrap dengan kelas seperti `container`, `row`, dan `col-md-6` untuk mengatur tata letak secara responsif.
 
     Dengan menggunakan Bootstrap, saya mencapai tampilan yang lebih konsisten, responsif, dan mudah dikelola dibandingkan dengan code pertama. Ini juga memberikan fleksibilitas dan kelebihan dalam desain dan tata letak halaman.
+
+    - terakhir saya tambahkan code html dibawah ini untuk mengaplikasikan bonus
+    ```html
+    <div class="card mt-3 {% if forloop.last %} bg-warning {% endif %}">
+    ```
