@@ -43,8 +43,41 @@
             <div class="alert alert-info">
                 Kamu menyimpan {{ jumlah_item }} item pada aplikasi ini.
             </div>
-
-            <div class="row">
+            
+            <table id="product_table"></table>
+            
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form" onsubmit="return false;">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="name" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="name" name="name"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="amount" class="col-form-label">Amount:</label>
+                                    <input type="number" class="form-control" id="amount" name="amount"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="col-form-label">Description:</label>
+                                    <textarea class="form-control" id="description" name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
                 {% for item in items %}
                 <div class="col-md-4">
                     <div class="card mt-3 {% if forloop.last %} bg-warning {% endif %}">
@@ -52,7 +85,6 @@
                             <h5 class="card-title">Name: {{ item.name }}</h5>
                             <p class="card-text">Amount: {{ item.amount }}</p>
                             <p class="card-text">Description: {{ item.description }}</p>
-                    
                             <div class="row">
                                 <div class="col">
                                     <form method="post" action="{% url 'main:tambah_stok' item.id %}">
@@ -86,10 +118,10 @@
                     
                 </div>
                 {% endfor %}
-            </div>
+            </div> -->
 
             <div class="mt-3">
-                <a href="{% url 'main:create_product' %}" class="btn btn-success">Add New Product</a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
                 <a href="{% url 'main:logout' %}" class="btn btn-secondary">Logout</a>
             </div>
             <br />
@@ -98,7 +130,90 @@
     </div>
 </div>
 
+<script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
 
+    async function deleteProduct(item_id) {
+    try {
+        const csrftoken = getCsrfToken();
+        const response = await fetch(`/delete_item/${item_id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Gagal menghapus produk.');
+        }
+
+        const data = await response.json();
+        console.log(data.message);
+        // Logika atau pembaruan tampilan sesuai kebutuhan
+    } catch (error) {
+        console.error('Terjadi kesalahan:', error);
+    }
+}
+
+// Fungsi untuk mendapatkan nilai csrftoken
+function getCsrfToken() {
+    // Gantilah dengan cara mendapatkan csrftoken sesuai dengan proyek atau framework yang kamu gunakan
+    // Misalnya, jika menggunakan Django, bisa menggunakan document.querySelector('[name=csrfmiddlewaretoken]').value
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
+
+    async function refreshProducts() {
+    document.getElementById("product_table").innerHTML = "";
+    const products = await getProducts();
+    let htmlString = `<tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>`;
+
+    products.forEach((item) => {
+        htmlString += `\n<tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.amount}</td>
+            <td>${item.fields.description}</td>
+            <td><button class="delete-button" data-item-id="${item.pk}">Hapus</button></td>
+        </tr>`;
+    });
+
+    document.getElementById("product_table").innerHTML = htmlString;
+
+    // Menambahkan event listener untuk setiap tombol hapus
+    document.querySelectorAll('.delete-button').forEach((button) => {
+    button.addEventListener('click', async () => {
+        const itemId = button.getAttribute('data-item-id');
+        console.log('Button clicked. Item ID:', itemId);
+        await deleteProduct(itemId);
+        refreshProducts(); // Refresh tabel setelah menghapus item
+    });
+});
+
+    }
+
+
+    refreshProducts()
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+    
+
+
+</script>
 
     
 {% endblock content %}
