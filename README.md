@@ -865,24 +865,24 @@ Tugas 5
 
 2. Jelaskan HTML5 Tag yang kamu ketahui.
     - Berikut adalah beberapa tag HTML5 yang umum digunakan:
-    <article>: digunakan untuk menandai sebuah artikel atau konten independen pada halaman web.
-    <aside>: digunakan untuk menandai konten yang terkait dengan konten lain pada halaman web.
-    <header>: digunakan untuk menandai bagian header atau kepala dari sebuah halaman web.
-    <nav>: digunakan untuk menandai bagian navigasi pada halaman web.
-    <section>: digunakan untuk menandai sebuah bagian pada halaman web.
-    <h1> - <h6> adalah untuk header
-    <button> dan <input> adalah inline element, button untuk memunculkan tombol dan input untuk meminta input
-    <figure> untuk menyimpan gambar dan memberi caption
-    <strong> untuk membuat tulisan semakin tebal
-    <p> untuk membuat paragraf
-    <a> untuk memasukan link
-    <ul> membuat list tidak berurut dengan bulat hitam
-    <li> bagian dari ul perelemennya
-    <ol> membuat list berurut dengan angka
-    <figcaption> untuk memberi caption pada gambar dalam figure
-    <input> : type, name, placeholder untuk menentukan tipe yang di submit, nama folder hasil inputan atau nama bagian yang dapat dieksekusi lebih dahulu, kata pembantu dalam kotak input
-    <footer> untuk membuat element pada bagian bawah web
-    <table> untuk membuat tabel pada html dan <caption> anak pertama dari parent tabel
+    article: digunakan untuk menandai sebuah artikel atau konten independen pada halaman web.
+    aside: digunakan untuk menandai konten yang terkait dengan konten lain pada halaman web.
+    header: digunakan untuk menandai bagian header atau kepala dari sebuah halaman web.
+    nav: digunakan untuk menandai bagian navigasi pada halaman web.
+    section: digunakan untuk menandai sebuah bagian pada halaman web.
+    h1 - h6 adalah untuk header
+    button dan input adalah inline element, button untuk memunculkan tombol dan input untuk meminta input
+    figure untuk menyimpan gambar dan memberi caption
+    strong untuk membuat tulisan semakin tebal
+    p untuk membuat paragraf
+    a untuk memasukan link
+    ul membuat list tidak berurut dengan bulat hitam
+    li bagian dari ul perelemennya
+    ol membuat list berurut dengan angka
+    figcaption untuk memberi caption pada gambar dalam figure
+    input : type, name, placeholder untuk menentukan tipe yang di submit, nama folder hasil inputan atau nama bagian yang dapat dieksekusi lebih dahulu, kata pembantu dalam kotak input
+    footer untuk membuat element pada bagian bawah web
+    table untuk membuat tabel pada html dan caption anak pertama dari parent tabel
 
 3. Jelaskan perbedaan antara margin dan padding.
     `Margin` dan `padding` adalah dua properti dasar dalam CSS yang memungkinkan Anda mengatur ruang di sekitar dan di dalam elemen HTML. Namun, keduanya memiliki peran yang berbeda dalam tata letak dan desain halaman.
