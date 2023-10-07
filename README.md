@@ -1,3 +1,201 @@
+
+Tugas 6
+1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+    - Pemrograman sinkron dan asinkron adalah dua pendekatan berbeda untuk mengeksekusi kode. Berikut perbedaan utama antara keduanya:
+    Pemrograman Sinkron:
+    a. Tugas dilakukan satu per satu dan dalam urutan tertentu.
+    b. Setiap tugas harus menunggu tugas sebelumnya selesai sebelum dapat dimulai.
+    c. Kode dijalankan secara berurutan, dan program menunggu setiap tugas selesai sebelum melanjutkan ke tugas berikutnya.
+    d. Pemrograman sinkron lebih sederhana dan mudah untuk dikodekan.
+    e. Ini didukung dengan baik di antara semua bahasa pemrograman.
+    f. Ini paling cocok untuk situasi di mana tugas harus diselesaikan dalam urutan tertentu dan waktu bukan merupakan faktornya.
+
+    Pemrograman Asinkron:
+    a. Tugas dapat dijalankan secara paralel dan tidak perlu menunggu satu sama lain.
+    b. Kode dijalankan secara bersamaan, dan program tidak menunggu setiap tugas selesai sebelum melanjutkan ke tugas berikutnya.
+    c. Pemrograman asinkron lebih kompleks dan dapat memperumit banyak hal.
+    d. Ini lebih cepat daripada pemrograman sinkron karena tugas dapat dijalankan secara paralel.
+    e. Lebih mudah untuk melakukan penskalaan karena beberapa tugas dapat dijalankan secara bersamaan.
+    f. Ini paling cocok untuk situasi di mana beberapa tugas perlu dijalankan pada waktu yang sama, dan hasil dari setiap tugas diperlukan untuk melanjutkan program.
+
+    Singkatnya, pemrograman sinkron lebih sederhana dan mudah untuk dikodekan, sedangkan pemrograman asinkron lebih kompleks tetapi lebih cepat dan mudah untuk diskalakan. Pilihan antara pemrograman sinkron dan asinkron bergantung pada tujuan program dan situasi spesifik.
+
+2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+    - Pemrograman berbasis peristiwa, juga dikenal sebagai paradigma pemrograman berbasis peristiwa, adalah paradigma pemrograman yang inti programnya ditentukan oleh peristiwa atau kejadian eksternal, seperti penggunaan mouse, keyboard, atau keyboard fisik. Peristiwa yang terjadi mungkin termasuk sensor atau diprogram (transmisi pesan) dari program atau thread lain. Dalam aplikasi berbasis peristiwa, sering kali terdapat loop utama yang menangani peristiwa dan kemudian memicu fungsi panggilan balik ketika peristiwa yang relevan terdeteksi. Teka-teki ini dapat diterapkan ke banyak bahasa pemrograman, termasuk JavaScript, yang mendukung program berbasis peristiwa. Contoh pertama bagaimana tugas ini dilakukan adalah dengan melakukan penyegaran otomatis pada menu tingkat atas untuk menampilkan daftar terbaru tanpa harus memuat ulang seluruh halaman.
+
+3. Jelaskan penerapan asynchronous programming pada AJAX.
+
+    - Pemrograman asinkron AJAX dilakukan dengan memanfaatkan teknologi transmisi data asinkron antara browser dan server web. AJAX memungkinkan transmisi data atau permintaan ke server tanpa menunggu respon dari server. Hal ini memungkinkan perangkat lunak untuk terus berjalan dan menyelesaikan tugas lain sambil menunggu respons server. Setelah menerima respon dari server, perangkat lunak akan mengaktifkan fungsi callback untuk menangani respon tersebut. Hasilnya, pengguna dapat terus menggunakan perangkat lunak tersebut tanpa harus menunggu proses permintaan dan jawaban selesai. Contoh penerapannya pada tugas ini adalah menampilkan list terbaru tanpa reload seluruh halaman dengan melakukan refresh pada halaman utama secara asinkronus.
+
+4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+    - Fetch API dan jQuery adalah dua teknologi yang dapat digunakan dalam pengembangan AJAX. Fetch API adalah teknologi JavaScript yang sangat baru dan asli, sedangkan jQuery adalah perpustakaan yang sudah lama ada. Fetch API memiliki antarmuka yang lebih ramah pengguna dan aman, serta kemampuan mengirim permintaan data tanpa menunggu respons dari server. Fetch API juga dapat menyediakan dan menerima data dalam berbagai format seperti XML, JSON, TEXT, dan HTML. jQuery, di sisi lain, memiliki sintaks yang lebih kompleks dan memerlukan penggunaan perpustakaan, meskipun fungsinya terbatas di berbagai browser. Pilihan antara Fetch API dan jQuery ditentukan oleh kebutuhan dan preferensi pengguna. Namun, Fetch API mungkin menjadi pilihan yang lebih menarik karena antarmukanya yang lebih sederhana dan kuat, serta kemampuannya untuk menangani permintaan data secara asinkron.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+    - saya Buat fungsi baru pada views.py dengan nama get_product_json yang menerima parameter request. Kemudian saya buat fungsi baru pada views.py dengan nama add_product_ajax yang menerima parameter request. kemudian saya routing kedua fungsi tersebut dengan mengimpornya lebih dahulu lalu menambahkan kode
+    ```python
+    path('get-product/', get_product_json, name='get_product_json'),
+    path('create-product-ajax/', add_product_ajax, name='add_product_ajax')
+    ```
+    - saya buka berkas main.html pada main/templates dan hapuslah bagian kode table yang sudah saya buat pada tutorial sebelumnya. kemudian saya tambahkan kode untuk tabel 
+    ```html
+    <table id="product_table"></table>
+    ```
+
+    - kemdian saya buat block Script di bagian bawah berkas saya dan buatlah fungsi baru pada block Script tersebut dengan nama getProducts(). dan saya buat fungsi baru pada block Script dengan nama refreshProducts() yang digunakan untuk me-refresh data produk secara asynchronous.
+    ```html
+    <script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        let htmlString = `<tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date Added</th>
+        </tr>`
+        products.forEach((item) => {
+            htmlString += `\n<tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.price}</td>
+            <td>${item.fields.description}</td>
+            <td>${item.fields.date_added}</td>
+        </tr>` 
+        })
+        
+        document.getElementById("product_table").innerHTML = htmlString
+    }
+
+    refreshProducts()
+    </script>
+    ```
+    - kemudian saya tambahkan button dan kode dibawah untuk mengaplikasikan modal menggunakan bootstrap
+    ```html
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form" onsubmit="return false;">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="name" class="col-form-label">Name:</label>
+                                    <input type="text" class="form-control" id="name" name="name"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="amount" class="col-form-label">Amount:</label>
+                                    <input type="number" class="form-control" id="amount" name="amount"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="col-form-label">Description:</label>
+                                    <textarea class="form-control" id="description" name="description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+    ```
+
+    - kemudian saya tambahkan data product dan fungsi onclick untuk menjalankan add product
+    ```html
+    <script>
+    ...
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+    document.getElementById("button_add").onclick = addProduct
+    </script>
+    ```
+
+    - implementasi bonus saya tambahkan code berikut pada html saya
+    ```html
+    <script>
+        async function deleteProduct(item_id) {
+        try {
+            const csrftoken = getCsrfToken();
+            const response = await fetch(`/delete_item/${item_id}/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Gagal menghapus produk.');
+            }
+
+            const data = await response.json();
+            console.log(data.message);
+            // Logika atau pembaruan tampilan sesuai kebutuhan
+        } catch (error) {
+            console.error('Terjadi kesalahan:', error);
+        }
+    }
+
+    // Fungsi untuk mendapatkan nilai csrftoken
+    function getCsrfToken() {
+        // Gantilah dengan cara mendapatkan csrftoken sesuai dengan proyek atau framework yang kamu gunakan
+        // Misalnya, jika menggunakan Django, bisa menggunakan document.querySelector('[name=csrfmiddlewaretoken]').value
+        return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    }
+
+
+        async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = "";
+        const products = await getProducts();
+        let htmlString = `<tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>`;
+
+        products.forEach((item) => {
+            htmlString += `\n<tr>
+                <td>${item.fields.name}</td>
+                <td>${item.fields.amount}</td>
+                <td>${item.fields.description}</td>
+                <td><button class="delete-button" data-item-id="${item.pk}">Hapus</button></td>
+            </tr>`;
+        });
+
+        document.getElementById("product_table").innerHTML = htmlString;
+
+        // Menambahkan event listener untuk setiap tombol hapus
+        document.querySelectorAll('.delete-button').forEach((button) => {
+        button.addEventListener('click', async () => {
+            const itemId = button.getAttribute('data-item-id');
+            console.log('Button clicked. Item ID:', itemId);
+            await deleteProduct(itemId);
+            refreshProducts(); // Refresh tabel setelah menghapus item
+        });
+    });
+
+        }
+    </script>
+    ```
+
+
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     1. Membuat sebuah proyek Django baru.
         - hal ini saya lakukan dengan membuat sebuah direktori baru kemudian dilanjutkan dengan membuat lingkungan virtual, setelah itu saya menginstal modul modul yang diperlukan, kemudian dilanjutkan dengan membuat proyek django. Saya mengatur ALLOWED_HOSTS di settings.py untuk keperluan deployment dan jadi proyek django baru
