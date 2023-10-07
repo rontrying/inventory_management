@@ -1,4 +1,3 @@
-
 Tugas 6
 1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
     - Pemrograman sinkron dan asinkron adalah dua pendekatan berbeda untuk mengeksekusi kode. Berikut perbedaan utama antara keduanya:
@@ -195,7 +194,7 @@ Tugas 6
     </script>
     ```
 
-
+Tugas 1
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     1. Membuat sebuah proyek Django baru.
         - hal ini saya lakukan dengan membuat sebuah direktori baru kemudian dilanjutkan dengan membuat lingkungan virtual, setelah itu saya menginstal modul modul yang diperlukan, kemudian dilanjutkan dengan membuat proyek django. Saya mengatur ALLOWED_HOSTS di settings.py untuk keperluan deployment dan jadi proyek django baru
