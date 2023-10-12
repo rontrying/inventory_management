@@ -82,9 +82,7 @@ Tugas 6
         console.log('Button clicked. Item ID:', itemId);
         await deleteProduct(itemId);
         refreshProducts(); // Refresh tabel setelah menghapus item
-    });
-
-    }}
+    })});
     refreshProducts()
     </script>
     ```
@@ -209,7 +207,7 @@ Tugas 6
         console.log('Button clicked. Item ID:', itemId);
         await deleteProduct(itemId);
         refreshProducts(); // Refresh tabel setelah menghapus item
-    });
+    })});
 
     }}
     refreshProducts()
