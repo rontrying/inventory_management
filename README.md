@@ -49,26 +49,42 @@ Tugas 6
         return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
     }
     async function refreshProducts() {
-        document.getElementById("product_table").innerHTML = ""
-        const products = await getProducts()
-        let htmlString = `<tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Date Added</th>
-        </tr>`
-        products.forEach((item) => {
-            htmlString += `\n<tr>
-            <td>${item.fields.name}</td>
-            <td>${item.fields.price}</td>
-            <td>${item.fields.description}</td>
-            <td>${item.fields.date_added}</td>
-        </tr>` 
-        })
-        
-        document.getElementById("product_table").innerHTML = htmlString
-    }
+    document.getElementById("product_table").innerHTML = "";
+    const products = await getProducts();
+    let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
 
+    products.forEach((item, index) => {
+        const cardClass = index === products.length - 1 ? 'bg-warning' : '';  // Add bg-warning class for the last card
+        htmlString += `
+            <div class="card m-3 ${cardClass}" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Name: ${item.fields.name}</h5>
+                    <p class="card-text">Amount: ${item.fields.amount}</p>
+                    <p class="card-text">Description: ${item.fields.description}</p>
+                    <div class="row">
+                        <div class="col">
+                            <button class="delete-button" data-item-id="${item.pk}">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    });
+
+    htmlString += '</div>';  // Close flex container
+    document.getElementById("product_table").innerHTML = htmlString;
+
+    document.getElementById("product_table").innerHTML = htmlString;
+
+    // Menambahkan event listener untuk setiap tombol hapus
+    document.querySelectorAll('.delete-button').forEach((button) => {
+    button.addEventListener('click', async () => {
+        const itemId = button.getAttribute('data-item-id');
+        console.log('Button clicked. Item ID:', itemId);
+        await deleteProduct(itemId);
+        refreshProducts(); // Refresh tabel setelah menghapus item
+    });
+
+    }}
     refreshProducts()
     </script>
     ```
@@ -160,37 +176,43 @@ Tugas 6
 
 
         async function refreshProducts() {
-        document.getElementById("product_table").innerHTML = "";
-        const products = await getProducts();
-        let htmlString = `<tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Action</th>
-        </tr>`;
+    document.getElementById("product_table").innerHTML = "";
+    const products = await getProducts();
+    let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
 
-        products.forEach((item) => {
-            htmlString += `\n<tr>
-                <td>${item.fields.name}</td>
-                <td>${item.fields.amount}</td>
-                <td>${item.fields.description}</td>
-                <td><button class="delete-button" data-item-id="${item.pk}">Hapus</button></td>
-            </tr>`;
-        });
-
-        document.getElementById("product_table").innerHTML = htmlString;
-
-        // Menambahkan event listener untuk setiap tombol hapus
-        document.querySelectorAll('.delete-button').forEach((button) => {
-        button.addEventListener('click', async () => {
-            const itemId = button.getAttribute('data-item-id');
-            console.log('Button clicked. Item ID:', itemId);
-            await deleteProduct(itemId);
-            refreshProducts(); // Refresh tabel setelah menghapus item
-        });
+    products.forEach((item, index) => {
+        const cardClass = index === products.length - 1 ? 'bg-warning' : '';  // Add bg-warning class for the last card
+        htmlString += `
+            <div class="card m-3 ${cardClass}" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Name: ${item.fields.name}</h5>
+                    <p class="card-text">Amount: ${item.fields.amount}</p>
+                    <p class="card-text">Description: ${item.fields.description}</p>
+                    <div class="row">
+                        <div class="col">
+                            <button class="delete-button" data-item-id="${item.pk}">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
     });
 
-        }
+    htmlString += '</div>';  // Close flex container
+    document.getElementById("product_table").innerHTML = htmlString;
+
+    document.getElementById("product_table").innerHTML = htmlString;
+
+    // Menambahkan event listener untuk setiap tombol hapus
+    document.querySelectorAll('.delete-button').forEach((button) => {
+    button.addEventListener('click', async () => {
+        const itemId = button.getAttribute('data-item-id');
+        console.log('Button clicked. Item ID:', itemId);
+        await deleteProduct(itemId);
+        refreshProducts(); // Refresh tabel setelah menghapus item
+    });
+
+    }}
+    refreshProducts()
     </script>
     ```
 
