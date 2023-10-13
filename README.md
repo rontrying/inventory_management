@@ -214,6 +214,8 @@ Tugas 6
     </script>
     ```
 
+    Link tautan : http://aaron-kwek-tugas.pbp.cs.ui.ac.id/ 
+
 Tugas 1
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     1. Membuat sebuah proyek Django baru.
