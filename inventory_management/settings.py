@@ -139,3 +139,11 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
+# Modify ALLOWED_TAGS to allow external scripts without integrity checks
+ALLOWED_TAGS = [
+    'a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em',
+    'i', 'li', 'ol', 'strong', 'ul', 'div', 'h1', 'h2', 'h3',
+    'p', 'img', 'br', 'span', 'hr',
+    'script',  # Include the script tag
+]
