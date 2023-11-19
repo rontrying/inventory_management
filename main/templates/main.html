@@ -191,8 +191,6 @@ async function refreshProducts() {
     htmlString += '</div>';  // Close flex container
     document.getElementById("product_table").innerHTML = htmlString;
 
-    document.getElementById("product_table").innerHTML = htmlString;
-
     // Menambahkan event listener untuk setiap tombol hapus
     document.querySelectorAll('.delete-button').forEach((button) => {
     button.addEventListener('click', async () => {

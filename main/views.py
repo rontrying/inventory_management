@@ -17,6 +17,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
+import json
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -158,3 +159,22 @@ def delete_item(request, id):
     item = get_object_or_404(Item, id=id)
     item.delete()
     return JsonResponse({'message': 'Item berhasil dihapus.'})
+
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
+
+        new_product = Item.objects.create(
+            user = request.user,
+            name = data["name"],
+            price = int(data["price"]),
+            description = data["description"]
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
