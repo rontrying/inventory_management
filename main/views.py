@@ -14,14 +14,14 @@ import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
 import json
-from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 @login_required(login_url='/login')
+
 def show_main(request):
     items = Item.objects.filter(user=request.user)
     jumlah_item = Item.objects.filter(user=request.user).count()
