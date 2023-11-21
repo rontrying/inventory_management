@@ -18,6 +18,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
 import json
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -65,6 +66,7 @@ def show_json_by_id(request, id):
     data = Item.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
+@csrf_protect
 def register(request):
     form = UserCreationForm()
 
@@ -77,6 +79,7 @@ def register(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
+@csrf_protect
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
