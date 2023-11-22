@@ -5,10 +5,11 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
+from main.forms import Item
 from django.contrib.auth import logout as auth_logout
-
-
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.core import serializers
 @csrf_exempt
 def login(request):
     username = request.POST['username']
@@ -22,7 +23,6 @@ def login(request):
                 "username": user.username,
                 "status": True,
                 "message": "Login sukses!"
-                # Tambahkan data lainnya jika ingin mengirim data ke Flutter.
             }, status=200)
         else:
             return JsonResponse({
@@ -52,3 +52,24 @@ def logout(request):
         "status": False,
         "message": "Logout gagal."
         }, status=401)
+    
+@csrf_exempt
+def register(request):
+    
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    if User.objects.filter(username=username).exists():
+        return JsonResponse({
+            "status": False,
+            "message": "Username sudah digunakan. Pilih username lain."
+        }, status=400)
+
+    # Buat user baru tanpa menggunakan email
+    user = User.objects.create_user(username=username, password=password)
+
+    return JsonResponse({
+        "username": user.username,
+        "status": True,
+        "message": "Registrasi berhasil!"
+    }, status=201)

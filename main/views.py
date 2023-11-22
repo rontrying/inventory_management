@@ -18,6 +18,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
 import json
+from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -139,10 +140,6 @@ def edit_product(request, id):
     context = {'form': form}
     return render(request, "edit_product.html", context)
 
-def get_product_json(request):
-    product_item = Item.objects.filter(user=request.user)
-    return HttpResponse(serializers.serialize('json', product_item))
-
 @csrf_exempt
 def add_product_ajax(request):
     if request.method == 'POST':
@@ -181,3 +178,8 @@ def create_product_flutter(request):
         return JsonResponse({"status": "success"}, status=200)
     else:
         return JsonResponse({"status": "error"}, status=401)
+
+@csrf_exempt
+def get_product_json(request):
+    product_item = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
